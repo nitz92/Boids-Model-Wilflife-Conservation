@@ -12,3 +12,7 @@ The agents population is recorded at every delta time(in seconds) and saved in a
 - `A`: Angle of the vision of the prey
 - `W`: Add resources to attract prey towards them
 - `V`: Show change vectors (displays a line for each behavioural rule's contribution)
+
+
+# Setup #
+Run python -m boids
