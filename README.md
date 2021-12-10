@@ -1,3 +1,5 @@
+Boids Model for Multi–Agent Simulation of Wildlife Conservation
+
 The aim of the project is to develop a multi–agent simulation based on Boids model for conserving wildlife, the simulation consists of the following three main agents: preys, poachers and rangers. The boids are differentiated using multiple coloured polygons. The simulation also consists of attraction points which act as
 resources to attract the preys to move closer to them.
 • White triangles: Preys
@@ -15,6 +17,11 @@ iv) Drones detecting poachers coordinates and update the rangers to re-direct th
 iv) More rangers appearing in the environment if the poachers population increases and 
 v) More poachers appearing in the environment if the preys reproduction rate is high.
 
-The agents population is recorded at every delta time(in seconds) and saved in a comma–separated values(CSV) file. The population growth graph is generated at
-the end of every simulation run. Pandas, an open source, BSD-licensed library was used together with Pyglet to plot the graphs. These graphs are used to perform
+The agents population is recorded at every delta time(in seconds) and saved in a comma–separated values(CSV) file. The population growth graph is generated at the end of every simulation run. Pandas, an open source, BSD-licensed library was used together with Pyglet to plot the graphs. These graphs are used to perform
 statistical data analysis on species populations and study their spatial patterns.
+
+Controls
+Q: Quit
+A: Angle of the vision of the  prey
+W: Add resources to attract prey towards them
+V: Show change vectors (displays a line for each behavioural rule's contribution)
