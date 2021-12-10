@@ -9,9 +9,6 @@ The agents population is recorded at every delta time(in seconds) and saved in a
 # Controls #
 
 - `Q`: Quit
-- `A`: Add Attractor (at the current mouse position)
-- `O`: Add Obstacle (at the current mouse position)
-- `+`: Add Boid
-- `-`: Remove Boid
-- `D`: Show debug (incl. each boid's direction and visible range)
+- `A`: Angle of the vision of the prey
+- `W`: Add resources to attract prey towards them
 - `V`: Show change vectors (displays a line for each behavioural rule's contribution)
