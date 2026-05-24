@@ -2,7 +2,7 @@
 
 A Python simulation of wildlife dynamics using Craig Reynolds' Boids algorithm, extended to model prey, poachers, rangers, and drones in an ecological environment.
 
-**Paper:** [Boids Model for Multi-Agent Simulation of Wildlife Conservation](link-to-paper)
+**Paper:** [Boids Model for Multi-Agent Simulation of Wildlife Conservation](https://drive.google.com/file/d/1k9NPXKhQ_eTqY2QLu4NGCJhdaL6McMJr/view?usp=sharing)
 
 ---
 
