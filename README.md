@@ -1,18 +1,102 @@
-# Overview #
+# Boids Model for Multi-Agent Simulation of Wildlife Conservation
 
-The aim of the project is to develop a multi–agent simulation based on Boids model for conserving wildlife, the simulation consists of the following three main agents: preys, poachers and rangers. The boids are differentiated using multiple coloured polygons. The simulation also consists of attraction points which act as resources to attract the preys to move closer to them. • White triangles: Preys • Red triangles: Poachers • Green triangles: Rangers • Yellow triangles: Drones • Blue circles: Attraction points
+A Python simulation of wildlife dynamics using Craig Reynolds' Boids algorithm, extended to model prey, poachers, rangers, and drones in an ecological environment.
 
-As the goal of the project is to develop a multi–agent simulation based on spatio–temporal modelling for wildlife conservation, Boids model aligns Ill with the project objectives. This project is an extension of Michael Dodsworth work on Boids model using single entity. From there, I have expanded the simulation by introducing multiple classes to represent the different agents and their behaviours. I also coded the simulation to recreate natural phenomenons of wildlife: i) Implementation of self–reproducing dynamics based on autopoiesis principles on preys, ii) Poachers moving in preys direction to attack them iii) Rangers detecting the poachers position and attack them before a poacher–prey attack, iv) Drones detecting poachers coordinates and update the rangers to re-direct them towards the poachers iv) More rangers appearing in the environment if the poachers population increases and v) More poachers appearing in the environment if the preys reproduction rate is high.
+**Paper:** [Boids Model for Multi-Agent Simulation of Wildlife Conservation](link-to-paper)
 
-The agents population is recorded at every delta time(in seconds) and saved in a comma–separated values(CSV) file. The population growth graph is generated at the end of every simulation run. Pandas, an open source, BSD-licensed library was used together with Pyglet to plot the graphs. These graphs are used to perform statistical data analysis on species populations and study their spatial patterns.
+---
 
-# Controls #
+## What this demonstrates
 
-- `Q`: Quit
-- `A`: Angle of the vision of the prey
-- `W`: Add resources to attract prey towards them
-- `V`: Show change vectors (displays a line for each behavioural rule's contribution)
+Classical agent-based modelling rarely appears in wildlife conservation analysis. This project applies the Boids flocking algorithm — typically used to simulate birds or fish — to a predator-prey-ranger ecosystem, producing emergent spatial patterns and population dynamics that reflect real-world conservation pressures.
 
+The simulation captures:
+- How prey populations respond to poaching pressure and resource availability
+- The probability of rangers intercepting poachers before a prey attack
+- Realistic ecological feedback loops (reproduction, overpopulation triggers, ranger reinforcement)
 
-# Setup #
-Run python -m boids
+---
+
+## Agents
+
+| Symbol | Agent | Behaviour |
+|---|---|---|
+| White triangle | Prey | Flocks, self-reproduces, avoids poachers |
+| Red triangle | Poacher | Moves toward prey; flees rangers |
+| Green triangle | Ranger | Detects and intercepts poachers |
+| Yellow triangle | Drone | Detects poacher coordinates; redirects rangers |
+| Blue circle | Attraction point | Resource that draws prey (e.g. watering holes) |
+
+---
+
+## Core algorithms
+
+Each agent navigates using three Boids steering rules:
+
+- **Separation** — avoids collisions with nearby peers; prey also treats poachers as obstacles
+- **Cohesion** — moves toward the geometric centre of its flock
+- **Alignment** — matches velocity and direction of neighbouring agents
+
+Extended with:
+- **Field of vision** — each agent has a configurable view angle affecting neighbour detection
+- **Obstacle avoidance** — prey detect poachers from distance and disrupt flock to escape
+- **Self-reproduction** — prey replicate at defined rates; offspring placed adjacent to maintain formation
+- **Dynamic population rules** — ranger count increases when poachers exceed threshold; new poachers introduced when prey overpopulate
+
+---
+
+## Key findings
+
+Three case studies were run (100 simulation runs each):
+
+1. **Attraction points increase prey survival** — prey population rose from 23.2 (0 points) to 26.4 (3 points) on average, as resources improved mobility and evasion
+2. **Rangers become ineffective when outnumbered** — probability of successful interception drops below 0.10 at 4+ poachers against 3 rangers
+3. **Realistic 60-day ecosystem dynamics** — prey peak around day 20, followed by periodic decline from poaching; ranger reinforcement stabilises the system over time
+
+Population data is recorded at every timestep and saved to `species.csv`; population graphs are generated automatically at the end of each run.
+
+---
+
+## Setup
+
+**Requirements:** Python 3, PyGame, PyOpenGL, Pyglet, Pandas
+
+```bash
+pip install -r requirements.txt
+python -m boids
+```
+
+**Controls**
+
+| Key | Action |
+|---|---|
+| `Q` | Quit |
+| `A` | Adjust prey vision angle |
+| `W` | Add attraction point (resource) |
+| `V` | Show steering vectors |
+
+---
+
+## Project structure
+
+```
+boids/          # Core simulation (agents, algorithms, environment)
+tests/          # Test suite
+species.csv     # Population output data
+requirements.txt
+Makefile
+```
+
+---
+
+## Built with
+
+- Python (PyGame + PyOpenGL for rendering, Pyglet + Pandas for analysis)
+- Boids algorithm — Craig Reynolds (1986)
+- Extended from Michael Dodsworth's single-entity Boids implementation
+
+---
+
+## License
+
+MIT
